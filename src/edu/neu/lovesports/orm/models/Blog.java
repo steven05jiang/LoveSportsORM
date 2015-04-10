@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 public class Blog {
 
 	@Id
-	private int id;
+	private Integer id;
 	private String title;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -39,11 +39,11 @@ public class Blog {
 	@OneToMany(mappedBy = "blog")
 	private List<Collection> collections;
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -111,7 +111,7 @@ public class Blog {
 		this.collections = collections;
 	}
 
-	public Blog(int id, String title, User user, Group group) {
+	public Blog(Integer id, String title, User user, Group group) {
 		super();
 		this.id = id;
 		this.title = title;

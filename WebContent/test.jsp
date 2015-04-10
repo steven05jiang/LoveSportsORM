@@ -14,10 +14,14 @@
 	CategoryDAO cdao = new CategoryDAO();
 	UserDAO udao = new UserDAO();
 	Category c = cdao.read(2);
-	User u = udao.read("Hera@gmail.com");
-	Subscription sub = sdao.read(1);
-	sub.setUser(u);
-	sdao.delete(2);
+	User u = udao.read("steven05jiang@gmail.com");
+	List<Subscription> subs = sdao.readByUser("steven05jiang@gmail.com");
+	for (Subscription sub : subs){
+		out.println(sub.getUser().getUsername()+" ");
+		out.println(sub.getCategory().getTitle());
+	}
+	
+	sdao.delete(u, c);
 	
 	%>
 </body>

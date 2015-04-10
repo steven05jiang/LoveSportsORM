@@ -7,47 +7,47 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import edu.neu.lovesports.orm.models.User;
+import edu.neu.lovesports.orm.models.Stamp;
 
-public class UserDAO {
+public class StampDAO {
 	
 	EntityManagerFactory factory = Persistence.createEntityManagerFactory("LoveSportsORM");
 	EntityManager em = factory.createEntityManager();
 	
 	//crud
-	//createUser
-	public User create(User user){
+	//create
+	public Stamp create(Stamp stamp){
 		em.getTransaction().begin();
-		em.persist(user);
+		em.persist(stamp);
 		em.getTransaction().commit();
-		return user;
+		return stamp;
 	}
 	
-	//readUserById
-	public User read(String username){
-		return em.find(User.class, username);
+	//read
+	public Stamp read(int id){
+		return em.find(Stamp.class, id);
 	}
 	
-	//readAllUser
+	//read
 	@SuppressWarnings("unchecked")
-	public List<User> readAll(){
-		Query query = em.createQuery("select user from User user");
-		return (List<User>)query.getResultList();
+	public List<Stamp> readAll(){
+		Query query = em.createQuery("select stamp from Stamp stamp");
+		return (List<Stamp>)query.getResultList();
 	}
 	
-	//updateUser
-	public User update(User user){
+	//update
+	public Stamp update(Stamp stamp){
 		em.getTransaction().begin();
-		em.merge(user);
+		em.merge(stamp);
 		em.getTransaction().commit();
-		return user;
+		return stamp;
 	}
 	
-	//deleteUser
-	public void delete(String username){
+	//delete
+	public void delete(int id){
 		em.getTransaction().begin();
-		User user = em.find(User.class, username);
-		em.remove(user);
+		Stamp stamp = em.find(Stamp.class, id);
+		em.remove(stamp);
 		em.getTransaction().commit();
 	}
 	

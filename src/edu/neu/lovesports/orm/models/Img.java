@@ -13,7 +13,7 @@ public class Img {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String name;
 	private String url;
 	
@@ -25,11 +25,11 @@ public class Img {
 	@JoinColumn(name = "categoryId")
 	private Category category;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -65,7 +65,7 @@ public class Img {
 		this.category = category;
 	}
 
-	public Img(int id, String name, String url, Blog blog, Category category) {
+	public Img(Integer id, String name, String url, Blog blog, Category category) {
 		super();
 		this.id = id;
 		this.name = name;

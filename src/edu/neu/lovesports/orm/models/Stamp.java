@@ -13,7 +13,7 @@ public class Stamp {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String stamp;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -24,11 +24,11 @@ public class Stamp {
 	@JoinColumn(name = "blogId")
 	private Blog blog;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -56,7 +56,7 @@ public class Stamp {
 		this.blog = blog;
 	}
 
-	public Stamp(int id, String stamp, User user, Blog blog) {
+	public Stamp(Integer id, String stamp, User user, Blog blog) {
 		super();
 		this.id = id;
 		this.stamp = stamp;

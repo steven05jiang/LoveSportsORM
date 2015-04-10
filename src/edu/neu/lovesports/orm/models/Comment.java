@@ -13,7 +13,7 @@ public class Comment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String title;
 	private String text;
 	
@@ -25,11 +25,11 @@ public class Comment {
 	@JoinColumn(name = "blogId")
 	private Blog blog;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -65,7 +65,7 @@ public class Comment {
 		this.blog = blog;
 	}
 
-	public Comment(int id, String title, String text, User user, Blog blog) {
+	public Comment(Integer id, String title, String text, User user, Blog blog) {
 		super();
 		this.id = id;
 		this.title = title;

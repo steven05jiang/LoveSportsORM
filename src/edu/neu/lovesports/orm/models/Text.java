@@ -9,18 +9,18 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Text {
 	@Id
-	private int id;
+	private Integer id;
 	private String text;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "blogId")
 	private Blog blog;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -40,7 +40,7 @@ public class Text {
 		this.blog = blog;
 	}
 
-	public Text(int id, String text, Blog blog) {
+	public Text(Integer id, String text, Blog blog) {
 		super();
 		this.id = id;
 		this.text = text;

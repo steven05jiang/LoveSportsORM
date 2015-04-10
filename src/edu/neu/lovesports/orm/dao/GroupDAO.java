@@ -7,47 +7,47 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import edu.neu.lovesports.orm.models.User;
+import edu.neu.lovesports.orm.models.Group;
 
-public class UserDAO {
+public class GroupDAO {
 	
 	EntityManagerFactory factory = Persistence.createEntityManagerFactory("LoveSportsORM");
 	EntityManager em = factory.createEntityManager();
 	
 	//crud
-	//createUser
-	public User create(User user){
+	//create
+	public Group create(Group group){
 		em.getTransaction().begin();
-		em.persist(user);
+		em.persist(group);
 		em.getTransaction().commit();
-		return user;
+		return group;
 	}
 	
-	//readUserById
-	public User read(String username){
-		return em.find(User.class, username);
+	//read
+	public Group read(String name){
+		return em.find(Group.class, name);
 	}
 	
-	//readAllUser
+	//read
 	@SuppressWarnings("unchecked")
-	public List<User> readAll(){
-		Query query = em.createQuery("select user from User user");
-		return (List<User>)query.getResultList();
+	public List<Group> readAll(){
+		Query query = em.createQuery("select group from Group group");
+		return (List<Group>)query.getResultList();
 	}
 	
-	//updateUser
-	public User update(User user){
+	//update
+	public Group update(Group group){
 		em.getTransaction().begin();
-		em.merge(user);
+		em.merge(group);
 		em.getTransaction().commit();
-		return user;
+		return group;
 	}
 	
-	//deleteUser
-	public void delete(String username){
+	//delete
+	public void delete(String name){
 		em.getTransaction().begin();
-		User user = em.find(User.class, username);
-		em.remove(user);
+		Group group = em.find(Group.class, name);
+		em.remove(group);
 		em.getTransaction().commit();
 	}
 	

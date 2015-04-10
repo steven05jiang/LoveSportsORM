@@ -13,7 +13,7 @@ public class BlogReference {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "blogId")
@@ -23,11 +23,11 @@ public class BlogReference {
 	@JoinColumn(name = "categoryId")
 	private Category category;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -47,7 +47,7 @@ public class BlogReference {
 		this.category = category;
 	}
 
-	public BlogReference(int id, Blog blog, Category category) {
+	public BlogReference(Integer id, Blog blog, Category category) {
 		super();
 		this.id = id;
 		this.blog = blog;

@@ -16,7 +16,7 @@ public class Homepage {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String name;
 	@Temporal(TemporalType.DATE)
 	private Date createDate;
@@ -26,10 +26,10 @@ public class Homepage {
 	@OneToMany(mappedBy = "homepage")
 	private List<Category> categories;
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -50,7 +50,7 @@ public class Homepage {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
-	public Homepage(int id, String name, Date createDate, Date modifyDate) {
+	public Homepage(Integer id, String name, Date createDate, Date modifyDate) {
 		super();
 		this.id = id;
 		this.name = name;

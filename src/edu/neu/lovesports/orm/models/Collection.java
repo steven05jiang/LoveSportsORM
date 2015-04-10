@@ -13,7 +13,7 @@ public class Collection {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String note;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -24,11 +24,11 @@ public class Collection {
 	@JoinColumn(name = "blogId")
 	private Blog blog;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -56,7 +56,7 @@ public class Collection {
 		this.blog = blog;
 	}
 
-	public Collection(int id, String note, User user, Blog blog) {
+	public Collection(Integer id, String note, User user, Blog blog) {
 		super();
 		this.id = id;
 		this.note = note;

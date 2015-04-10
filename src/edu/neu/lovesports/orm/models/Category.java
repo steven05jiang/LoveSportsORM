@@ -16,7 +16,7 @@ public class Category {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String title;
 	private String description;
 	
@@ -37,11 +37,11 @@ public class Category {
 	@OneToMany(mappedBy = "category")
 	private List<Img> Imgs;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -101,7 +101,7 @@ public class Category {
 		Imgs = imgs;
 	}
 
-	public Category(int id, String title, String description,
+	public Category(Integer id, String title, String description,
 			Homepage homepage, User editor) {
 		super();
 		this.id = id;

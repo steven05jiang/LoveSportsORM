@@ -4,9 +4,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -35,6 +33,12 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Collection> collections;
 	
+	
+	@OneToMany(mappedBy = "follower")
+	private List<Following> followees;
+	
+	@OneToMany(mappedBy = "followee")
+	private List<Following> followers;
 	
 	public String getUsername() {
 		return username; 
