@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import edu.neu.lovesports.orm.models.Blog;
+import edu.neu.lovesports.orm.models.Group;
 
 public class BlogDAO {
 	
@@ -26,6 +27,14 @@ public class BlogDAO {
 	//read
 	public Blog read(int id){
 		return em.find(Blog.class, id);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Blog> readByGroup(String name){
+		Group group = em.find(Group.class, name);
+		Query query = em.createQuery("select blog from Blog blog where blog.group = :group");
+		query.setParameter("group", group);
+		return (List<Blog>)query.getResultList();
 	}
 	
 	//read

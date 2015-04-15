@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Profile</title>
+<title></title>
 </head>
 <body>
 	<%
@@ -56,7 +56,39 @@
 	<%
 		}
 	%>
-	
-	
+
+	<div>
+		<h1>LoveSports Forum</h1>
+		<form id="searchForm" action="Forum.jsp">
+			<input name="content" type="text">
+			<button type="submit" name="action" value="search">Search</button>
+		</form>
+		<ul>
+			<%
+				BlogDAO bdao = new BlogDAO();
+				List<Blog> blogs = bdao.readAll();
+				for (Blog blog : blogs) {
+			%>
+			<li>
+				<table>
+					<tr>
+						<td><h2><a href="/LoveSportsORM/Blog.jsp?blogId=<%=blog.getId() %>"><%=blog.getTitle()%></a></h2></td>
+					</tr>
+
+					<tr>
+						<td><small><a href="/LoveSportsORM/UserProfile.jsp?username=<%=blog.getUser().getUsername() %>"><%=blog.getUser().getUsername()%></a></small></td>
+					</tr>
+					<tr>
+						<td><p><%=blog.getTexts().get(0).getText()%></p></td>
+					</tr>
+				</table>
+			</li>
+
+			<%
+				}
+			%>
+		</ul>
+	</div>
+
 </body>
 </html>

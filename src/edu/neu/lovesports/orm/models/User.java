@@ -107,6 +107,18 @@ public class User {
 	public void setCollections(List<Collection> collections) {
 		this.collections = collections;
 	}
+	public List<Following> getFollowees() {
+		return followees;
+	}
+	public void setFollowees(List<Following> followees) {
+		this.followees = followees;
+	}
+	public List<Following> getFollowers() {
+		return followers;
+	}
+	public void setFollowers(List<Following> followers) {
+		this.followers = followers;
+	}
 	public User(String username, String password, String firstName,
 			String lastName, String email) {
 		super();

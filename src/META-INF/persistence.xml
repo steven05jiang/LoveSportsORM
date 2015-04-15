@@ -5,6 +5,7 @@
 	<persistence-unit name="LoveSportsORM">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>edu.neu.lovesports.orm.models.User</class> 
+		<class>edu.neu.lovesports.orm.models.Group</class> 
 		<class>edu.neu.lovesports.orm.models.Blog</class>
 		<class>edu.neu.lovesports.orm.models.Text</class>
 		<class>edu.neu.lovesports.orm.models.Subscription</class>
@@ -13,8 +14,7 @@
 		<class>edu.neu.lovesports.orm.models.Homepage</class>
 		<class>edu.neu.lovesports.orm.models.Category</class>
 		<class>edu.neu.lovesports.orm.models.Admin</class>
-		<class>edu.neu.lovesports.orm.models.BlogReference</class>
-		<class>edu.neu.lovesports.orm.models.Group</class>
+		<class>edu.neu.lovesports.orm.models.BlogReference</class> 
 		<class>edu.neu.lovesports.orm.models.Comment</class>
 		<class>edu.neu.lovesports.orm.models.Stamp</class>
 		<class>edu.neu.lovesports.orm.models.Following</class>

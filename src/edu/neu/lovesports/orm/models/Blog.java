@@ -122,6 +122,4 @@ public class Blog {
 	public Blog() {
 		super();
 	}
-	
-
 }
