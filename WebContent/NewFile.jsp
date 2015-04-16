@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>LoveSports</title>
 </head>
 <body>
 	<%
@@ -13,25 +13,30 @@
 		String action = request.getParameter("action");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String group;
+		if(request.getParameter("group") == null)
+			group = "Forum";
+		else
+			group = request.getParameter("group");
 
 		if (action != null) {
 
 			if ("signup".equals(action))
-				response.sendRedirect("/LoveSportsORM/UserSignUp.jsp");
+		response.sendRedirect("/LoveSportsORM/UserSignUp.jsp");
 
 			if ("logout".equals(action))
-				session.removeAttribute("User");
+		session.removeAttribute("User");
 			else if ("login".equals(action)) {
-				if (username == "" || password == "")
-					out.println("Please enter account and password.");
-				else if (check.Login(request, response, username, password))
-					response.sendRedirect("/LoveSportsORM/Forum.jsp");
-				else
-					out.println("Username and Password are not matched.");
+		if (username == "" || password == "")
+			out.println("Please enter account and password.");
+		else if (check.Login(request, response, username, password))
+			response.sendRedirect("/LoveSportsORM/NewFile.jsp"+"?group="+group);
+		else
+			out.println("Username and Password are not matched.");
 			}
-		}
-	%>
-	<div id="top">
+		}	
+		User user = (User) session.getAttribute("User");
+		if (user == null) {%>
 		<div id="login">
 			<form id="form" action="NewFile.jsp">
 				Account: <input name="username" type="text" /> Password:<input
@@ -40,30 +45,48 @@
 				<button name="action" value="signup">Sign Up</button>
 			</form>
 		</div>
-	</div>
-	<%
-		User user = (User)session.getAttribute("User");
-		if (user != null) {
+	<%}
+		else{
 	%>
-	<script>
-		target = document.getElementById("login");
-		var username = "<%=user.getUsername()%>";
-		var firstName = "<%=user.getFirstName()%>";
-		var lastName = "<%=user.getLastName()%>";
-		target.innerHTML = "Hello "
-				+ firstName
-				+ " "
-				+ lastName
-				+ "!"
-				+ "<form action='NewFile.jsp'><button name='action' value='logout'>Log Out</button></form>";
-	</script>
+	<div>
+	<strong>Hello!</strong>
+	<form action="NewFile.jsp">
+	<button type="submit" name="action" value="logout">Log Out</button>
+	</form>
+	</div>
 	<%
 		}
 	%>
-	<%
-		User u = (User) session.getAttribute("User");
-		if (u != null)
-			out.println(u.getFirstName());
-	%>
+
+	<div>
+		<h1></h1>
+		<form id="searchForm" action="Group.jsp">
+			<input name="content" type="text">
+			<button type="submit" name="action" value="search">Search</button>
+		</form>
+		<ul>
+			<%
+				GroupDAO gdao = new GroupDAO();
+				List<Blog> blogs = gdao.read(group).getBlogs();
+				for (Blog blog : blogs) {
+			%>
+			<li>
+				<div>
+					<h2>
+						<a href="/LoveSportsORM/Blog.jsp?blogId=<%=blog.getId()%>"><%=blog.getTitle()%></a>
+					</h2>
+					<i> <a
+						href="/LoveSportsORM/UserProfile.jsp?user=<%=blog.getUser().getUsername()%>"><%=blog.getUser().getNickname()%></a>
+					</i>
+					<p><%=blog.getTexts().get(0).getText()%></p>
+				</div>
+			</li>
+
+			<%
+				}
+			%>
+		</ul>
+	</div>
+
 </body>
 </html>

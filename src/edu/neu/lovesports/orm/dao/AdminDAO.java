@@ -7,47 +7,47 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import edu.neu.lovesports.orm.models.Blog;
+import edu.neu.lovesports.orm.models.Admin;
 
-public class BlogDAO {
+public class AdminDAO {
 	
 	EntityManagerFactory factory = Persistence.createEntityManagerFactory("LoveSportsORM");
 	EntityManager em = factory.createEntityManager();
 	
 	//crud
-	//create
-	public Blog create(Blog blog){
+	//createAdmin
+	public Admin create(Admin admin){
 		em.getTransaction().begin();
-		em.persist(blog);
+		em.persist(admin);
 		em.getTransaction().commit();
-		return blog;
+		return admin;
 	}
 	
-	//read
-	public Blog read(int id){
-		return em.find(Blog.class, id);
+	//readAdminById
+	public Admin read(String username){
+		return em.find(Admin.class, username);
 	}
 	
-	//read
+	//readAllAdmin
 	@SuppressWarnings("unchecked")
-	public List<Blog> readAll(){
-		Query query = em.createQuery("select blog from Blog blog");
-		return (List<Blog>)query.getResultList();
+	public List<Admin> readAll(){
+		Query query = em.createQuery("select admin from Admin admin");
+		return (List<Admin>)query.getResultList();
 	}
 	
-	//update
-	public Blog update(Blog blog){
+	//updateAdmin
+	public Admin update(Admin admin){
 		em.getTransaction().begin();
-		em.merge(blog);
+		em.merge(admin);
 		em.getTransaction().commit();
-		return blog;
+		return admin;
 	}
 	
-	//delete
-	public void delete(int id){
+	//deleteAdmin
+	public void delete(String adminname){
 		em.getTransaction().begin();
-		Blog blog = em.find(Blog.class, id);
-		em.remove(blog);
+		Admin admin = em.find(Admin.class, adminname);
+		em.remove(admin);
 		em.getTransaction().commit();
 	}
 	
