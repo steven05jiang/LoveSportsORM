@@ -25,7 +25,9 @@ public class UserDAO {
 	
 	//readUserById
 	public User read(String username){
-		return em.find(User.class, username);
+		User user = em.find(User.class, username);
+		em.refresh(user);
+		return user;
 	}
 	
 	//readAllUser
