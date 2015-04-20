@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>LoveSports</title>
+<script type="text/javascript" src="js/jquery-2.1.3.js"></script>
 </head>
 <body>
 	<%
@@ -44,6 +45,8 @@
 		User user = (User) session.getAttribute("User");
 	%>
 	<div id="top">
+		<a>Homepage</a>
+		<a href="/LoveSportsORM/Group.jsp?groupName=Forum">Forum</a>
 		<%
 			if (user == null) {
 		%>
@@ -114,6 +117,15 @@
 					<i> <a
 						href="/LoveSportsORM/UserProfile.jsp?user=<%=blog.getUser().getUsername()%>"><%=blog.getUser().getNickname()%></a>
 					</i>
+					<p id="text<%=i %>">
+						<textarea id="loadText<%=i %>" style="display:none"><%=blog.getText() %></textarea>
+						<script>
+						var textId = "#text<%=i %>";
+						var loadTextId = "#loadText<%=i %>";
+						var text = $(loadTextId).val();
+						$(textId).append(text);
+						</script>
+					</p>
 				</div>
 			</li>
 

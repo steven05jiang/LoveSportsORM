@@ -10,9 +10,18 @@
 </script>
 <script>
 	$(function(){
-		var text = $('<p></p>').text($('#loadText').val());
-		$('#blog').append(text);
+		var text = $('#loadText').val();
+		$('#text').append(text);
+		
+		$('#del').click(function(){
+			var result = confirm('Are you sure to delete this blog?');
+			if(result == true){
+				var href = 'Blog.jsp?blogId=' + '<%=request.getParameter("blogId")%>' + '&action=removeBlog';
+				window.location.href = href;
+			}
+		});
 	});
+	
 </script>
 </head>
 <body>
@@ -52,6 +61,8 @@
 		User user = (User) session.getAttribute("User");
 	%>
 	<div id="top">
+	<a>Homepage</a>
+	<a href="/LoveSportsORM/Group.jsp?groupName=Forum">Forum</a>
 		<%
 			if (user == null) {
 				%>
@@ -99,14 +110,11 @@
 					cmtdao.create(comment);
 					}
 			}
-			else if("editBlog".equals(action)){
-					response.sendRedirect("/LoveSportsORM/BlogEditor.jsp?blogId="+blogId);
-			}
-			else if("removeComment".equals(action)){
+			else if("removeComment".equals(action) && cmtdao.read(Integer.parseInt(request.getParameter("commentId"))).getUser().getUsername().equals(user.getUsername())){
 					cmtdao.delete(Integer.parseInt(request.getParameter("commentId")));
 			}
 		}
-		if(!"editBlog".equals(action))
+		if((!"editBlog".equals(action))&&(!"removeBlog".equals(action)))
 			response.sendRedirect("/LoveSportsORM/Blog.jsp?blogId="+blogId);
 	}
 	%>
@@ -115,22 +123,30 @@
 			<h1><%=blog.getTitle()%></h1>
 			<p><strong> Written by: </strong><i><a href="/LoveSportsORM/UserProfile.jsp?user=<%=blog.getUser().getUsername()%>"><%=blog.getUser().getNickname()%></a></i></p>
 			<p><tt>Created on <%=blog.getCreateDate() %></tt></p>
+			<%
+			if(blog.getModifyDate() != null){
+			%>
 			<p><tt>Modified on <%=blog.getModifyDate() %></tt></p>
 			<%
+			}
 			if(user != null){
 				if(blog.getUser().getUsername().equals(user.getUsername())){
 					%>
-					<form>
+					<p>
+					<form action="Blog.jsp">
 					<button name="action" value="editBlog">Edit</button>
 					<input type="hidden" name="blogId" value="<%=blogId%>" />
 					</form>
+					<button id="del">Delete</button>
+					</p>
 					<%
 				}
 			}
 			%>
-			<p>
-			<a href="#comment"><button>Skip to Comment</button></a></p>
+			<p><a href="#comment"><button>Skip to Comment</button></a></p>
+			<p id="text">
 			<textarea id="loadText" style="display:none"><%=blog.getText() %></textarea>
+			</p>
 		</div>
  		<div>
 			<%
@@ -149,8 +165,8 @@
 			<div>
 				<form action="Blog.jsp">
 					<input type="hidden" name="blogId" value="<%=blogId%>" /> 
-					<input type="text" name="title" placeholder="Enter title" autofocus="autofocus" /><br /> 
-					<input type="text" name="text" required="required" placeholder="Enter comment" autofocus="autofocus" /><br />
+					<input type="text" name="title" placeholder="Enter title" /><br /> 
+					<input type="text" name="text" required="required" placeholder="Enter comment" /><br />
 					<button name="action" value="postComment">Submit</button>
 					<button type="reset">Reset</button>
 				</form>
@@ -266,5 +282,22 @@
 		</div> 
 
 	</div>
+	<%
+	if(action != null){
+		if(user != null){
+			if(blog.getUser().getUsername().equals(user.getUsername())){
+					if("editBlog".equals(action)){
+						response.sendRedirect("/LoveSportsORM/BlogEditor.jsp?blogId="+blogId);
+					}
+					else if("removeBlog".equals(action)){
+						String groupName = blog.getGroup().getName();
+						bdao.delete(blog.getId());
+						blog = null;
+						response.sendRedirect("/LoveSportsORM/Group.jsp?groupName="+groupName);
+					}
+			}
+		}
+	}
+	%>
 </body>
 </html>

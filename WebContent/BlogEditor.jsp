@@ -19,7 +19,7 @@
 		$(document).ready(function(){
 			$('#editor').contents().find('body').html($('#oldText').val());
 		});
-		$('#insert_img').click(function() {                                
+		$('#insertImg').click(function() {                                
 			var img = '<img src="' + $('#path').val() + '" />';
 			$("body", $d).append(img);
 		});
@@ -82,6 +82,8 @@
 		}
 	%>
 	<div id="top">
+		<a>Homepage</a>
+		<a href="/LoveSportsORM/Group.jsp?groupName=Forum">Forum</a>
 		<div id="login">
 			<strong>Hello <%=user.getNickname()%>!
 			</strong>
@@ -135,7 +137,7 @@
 				if (blog != null) {
 			%>
 			<p>
-			<input type="text" id="titleHolder" value="<%=blog.getTitle()%>" />
+			<input type="text" placeholder="Blog title" id="titleHolder" value="<%=blog.getTitle()%>" />
 			<textarea id="oldText" style="display:none"><%=blog.getText() %></textarea>
 			</p>
 			<%
@@ -143,13 +145,14 @@
 				else{
 					%>
 					<p>
-					<input type="text" id="titleHolder" />
+					<input type="text" placeholder="Blog title" id="titleHolder" />
 					<textarea id="oldText" style="display:none"></textarea>
 					<%
 				}
 			%>
 			</p>
-			<button id="insert_img" value="insertPicture">Insert Picture</button>
+			<input id="path" placeholder="Copy image URL here" type="text" name="url"/>
+			<button id="insertImg" value="insertPicture">Insert Picture</button>
 			<p>
 			<iframe id="editor"></iframe>
 			</p>
