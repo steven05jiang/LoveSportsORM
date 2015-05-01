@@ -13,6 +13,14 @@ public class FollowingDAO {
 	EntityManager em = factory.createEntityManager();
 
 	// crud
+	
+	// read
+		public Following read(FollowingId fId)
+		{
+			Following following = em.find(Following.class, fId);
+			return following;
+		}
+		
 	// create
 	public Following create(User follower, User followee) {
 		Following following = new Following(follower, followee);

@@ -15,6 +15,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String email;
+	private Integer frozen;
 	
 	@OneToMany(mappedBy = "editor")
 	private List<Category> categories;
@@ -40,6 +41,12 @@ public class User {
 	
 	@OneToMany(mappedBy = "followee")
 	private List<Following> followers;
+	
+	@OneToMany(mappedBy="sender")
+	private List<Msg> sendMsgs;
+	
+	@OneToMany(mappedBy="receiver")
+	private List<Msg> rcvMsgs;
 	
 	public String getUsername() {
 		return username; 
@@ -78,6 +85,12 @@ public class User {
 		this.email = email;
 	}
 
+	public Integer getFrozen() {
+		return frozen;
+	}
+	public void setFrozen(Integer frozen) {
+		this.frozen = frozen;
+	}
 	public List<Category> getCategories() {
 		return categories;
 	}
@@ -126,6 +139,18 @@ public class User {
 	public void setFollowers(List<Following> followers) {
 		this.followers = followers;
 	}
+	public List<Msg> getSendMsgs() {
+		return sendMsgs;
+	}
+	public void setSendMsgs(List<Msg> sendMsgs) {
+		this.sendMsgs = sendMsgs;
+	}
+	public List<Msg> getRcvMsgs() {
+		return rcvMsgs;
+	}
+	public void setRcvMsgs(List<Msg> rcvMsgs) {
+		this.rcvMsgs = rcvMsgs;
+	}
 	public User(String username, String password, String nickname, String firstName,
 			String lastName, String email) {
 		super();
@@ -135,6 +160,7 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.frozen = 0;
 	}
 	public User() {
 		super();
