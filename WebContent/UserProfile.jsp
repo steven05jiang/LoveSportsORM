@@ -321,7 +321,7 @@
 		%>
 		<li>
 			[<a href="Group.jsp?groupName=<%= b.getGroup().getName()%>"><%=b.getGroup().getName() %></a>]
-			<a href="Blog.jsp?blogId=<%= b.getId()%>"><%=b.getTitle()%></a><br>
+			<a href="Blog.jsp?blogId=<%= b.getId()%>"><%=b.getTitle()%></a>
 		</li>
 		<%
 			}
@@ -332,7 +332,7 @@
 		%>
 		<li>
 				[<a style="color:red "href="Group.jsp?groupName=<%= b.getGroup().getName()%>"><%=b.getGroup().getName() %></a>]
-				<a style="color:red" href="Blog.jsp?blogId=<%= b.getId()%>"><%=b.getTitle()%> (Blocked)</a><br>
+				<a style="color:red" href="Blog.jsp?blogId=<%= b.getId()%>"><%=b.getTitle()%> (Blocked)</a>
 		</li>
 		<%
 				}
